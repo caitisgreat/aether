@@ -1,0 +1,27 @@
+{
+  "name": "aether",
+  "version": "1.0.0",
+  "description": "a MEAN-based single page weather app",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.4",  
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.4",
+    "webpack": "^2.3.3"
+  },
+  "scripts": {
+    "test": "echo \"Hello World!\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caitisgreat/aether.git"
+  },
+  "author": "Caitlin Hoyle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caitisgreat/aether/issues"
+  },
+  "homepage": "https://github.com/caitisgreat/aether#readme"
+}
