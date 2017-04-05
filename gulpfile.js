@@ -1,20 +1,30 @@
 var gulp = require('gulp');
 var pug = require('gulp-pug');
 
-gulp.task('server', function () {
+gulp.task('server', function() {
   return gulp.src('bin/server.js')
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('client', function () {
+gulp.task('client', function() {
   return gulp.src('bin/client.js')
-    .pipe(gulp.dest('dist/client/'));
+    .pipe(gulp.dest('dist/client/assets'));
 });
 
-gulp.task('html', function(){
-  return gulp.src('src/client/*.pug')
-    .pipe(pug())
-    .pipe(gulp.dest('dist/client/'));
+gulp.task('html', function() {
+  return gulp.src('src/client/templates/*.pug')
+    //.pipe(pug())
+    .pipe(gulp.dest('dist/client/templates'));
 });
 
-gulp.task('default', ['server','client','html']);
+gulp.task('package', function() {
+  return gulp.src('package.json')
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('readme', function() {
+  return gulp.src('*.md')
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('default', ['server', 'client', 'html', 'package', 'readme']);

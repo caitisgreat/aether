@@ -3,11 +3,10 @@ html(lang="en" ng-app="aether")
   head
     meta(charset='utf-8')
     title aether - a clear skies weather app
-    link(rel='stylesheet', href='/css/app.css')
+    link(rel='stylesheet', href='assets/app.css')
   body
-    div (ng-controller='AppCtrl')
+    div(ng-controller='AppCtrl')
       h1 aether - a clear skies weather app
-    div (ng-view)
+    div(ng-view)
 
-    script(src='js/lib/bundle.js')
-    script(src='js/app/bundle.js')
+    script(src='/assets/client.js')

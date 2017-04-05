@@ -1,11 +1,13 @@
-var api, express, router;
+var api, express, path, router;
 
 api = require('./api');
 express = require('express');
+path = require('path');
 router = express.Router();
 
 // anything beginning with "/api" will go into this
 router.use('/api', api);
+
 
 /**
  * Route to Home Page
@@ -13,7 +15,7 @@ router.use('/api', api);
  * @param  {Object} res the Response object
  */
 router.get('/', function(req, res) {
-  res.render('index.pug');
+  res.render('index');
 });
 
 /**
@@ -21,8 +23,8 @@ router.get('/', function(req, res) {
  * @param  {Object} req the Request object
  * @param  {Object} res the Response object
  */
-router.get('*', function(req, res) {
+/*router.get('*', function(req, res) {
   res.render('index.pug');
 });
-
+*/
 module.exports = router;

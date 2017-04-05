@@ -16,11 +16,12 @@ let app = express();
  * All Environments
  */
 
-app.set('port', process.env.PORT || 3000);
-app.use(express.static(__dirname + '/client'));
-app.set('views' , __dirname + '/client');
-app.set('view engine', 'pug');
+ app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
+ console.log(path.join(__dirname, 'client/assets'));
 
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'client/templates'));
+app.set('view engine', 'pug');
 
 const env = process.env.NODE_ENV || 'development';
 
