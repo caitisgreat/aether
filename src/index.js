@@ -3,12 +3,12 @@
  */
 let api, debug, express, http, path, routes;
 
-api = require('./routes/api');
+api = require('./server/routes/api');
 debug = require('debug');
 express = require('express');
 http = require('http');
 path = require('path');
-routes = require('./routes');
+routes = require('./server/routes');
 
 let app = express();
 
@@ -17,9 +17,10 @@ let app = express();
  */
 
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/client'));
+app.set('views' , __dirname + '/client');
 app.set('view engine', 'pug');
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -49,5 +50,5 @@ app.use('/', routes);
  * Initialize the Server
  */
 http.createServer(app).listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log(`Express server listening on port ${app.get('port')}`);
 });

@@ -1,3 +1,5 @@
+var angular = require('angular');
+
 (function () {
   'use strict';
 
@@ -5,7 +7,7 @@
     'aether.home',
     'aether.about'
   ])
-  
+
   /**
    * AppConfig
    * App module ngRoute configuration
@@ -16,5 +18,12 @@
       {
         redirectTo: '/home'
       });
-  });
+  })
+
+  /**
+   * AppController
+   * The controller defined for Home route
+   */
+    .controller('HomeCtrl', function AppController ($scope) {
+    });
 })();

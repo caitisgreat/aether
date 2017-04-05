@@ -13,7 +13,7 @@ router.use('/api', api);
  * @param  {Object} res the Response object
  */
 router.get('/', function(req, res) {
-  res.render('index');
+  res.render('index.pug');
 });
 
 /**
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
  * @param  {Object} res the Response object
  */
 router.get('*', function(req, res) {
-  res.status(404).send(`Sorry, that page doesn't exist`);
+  res.render('index.pug');
 });
 
 module.exports = router;
