@@ -4,8 +4,9 @@
   "description": "a MEAN-based single page weather app",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.6.4",  
-    "express": "^4.15.2"
+    "angular": "^1.6.4",
+    "express": "^4.15.2",
+    "pug": "^2.0.0-beta11"
   },
   "devDependencies": {
     "jshint": "^2.9.4",
