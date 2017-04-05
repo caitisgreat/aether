@@ -13,7 +13,8 @@
     "webpack": "^2.3.3"
   },
   "scripts": {
-    "test": "echo \"Hello World!\" && exit 0"
+    "start" : "npm build && node index.js",
+    "build" : "webpack --config ./webpack.deployment.config.js --progress --colors"    
   },
   "repository": {
     "type": "git",

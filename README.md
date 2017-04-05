@@ -1,1 +1,1 @@
-aether - a MEAN-based single page weather app
+aether - a clear skies single page weather app

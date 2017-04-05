@@ -1,4 +1,9 @@
 extends layout
 
 block body
-  h1 aether - a clear skies weather app
+  div (ng-controller='AppCtrl')
+    h1 aether - a clear skies weather app
+  div (ng-view)
+
+  script(src='js/lib/bundle.js')
+  script(src='js/app/bundle.js')
