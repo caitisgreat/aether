@@ -15,19 +15,19 @@ router.get('/ping', function(req, res) {
 });
 
 /**
- * Ping test method
+ * Get conditions method
  * @param  {Object} req the Request object
  * @param  {Object} res the Response object
  * @return JSON Object { conditions: {} }
  */
-router.get('/conditions/:zipcode', function(req, res){
+router.get('/conditions/:zipcode', (req, res) => {
   debugger;
   wunderground.getConditions(req.params.zipcode)
     .then((response) => {
       res.send(response);
     })
-    .catch((reason) => {
-      res.send({error: reason});
+    .catch((errorMessage) => {
+      res.status(errorMessage.statusCode).send({error: errorMessage.message});
     });
 });
 
