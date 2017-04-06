@@ -1,4 +1,4 @@
-var express, router;
+var express, router, wunderground;
 
 express = require('express');
 router = express.Router();
@@ -21,7 +21,14 @@ router.get('/ping', function(req, res) {
  * @return JSON Object { conditions: {} }
  */
 router.get('/conditions/:zipcode', function(req, res){
-  res.json({ conditions: "test"});
+  debugger;
+  wunderground.getConditions(req.params.zipcode)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((reason) => {
+      res.send({error: reason});
+    });
 });
 
 module.exports = router;
