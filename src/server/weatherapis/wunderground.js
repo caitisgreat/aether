@@ -9,8 +9,7 @@ var config = require('../config.json');
  * @return {[Promise]}         Promise of weather condition data
  */
 module.exports.getConditions = (zipcode) => {
-  return new Promise((resolve, reject) => {
-    debugger;
+  return new Promise((resolve, reject) => {    
     if(!/^\d{5}$/.test(zipcode)){
       reject(new errorMessage(404, "Invalid zipcode"));
     }
