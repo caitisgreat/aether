@@ -22,3 +22,6 @@ node_modules/
 # Prepared files
 bin/
 dist/
+
+# Configuration file
+src/server/config.json
