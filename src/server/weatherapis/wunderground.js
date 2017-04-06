@@ -1,6 +1,6 @@
 var http = require('http');
 var bl = require('bl');
-var config  
+var config = require('../config.json');
 
 module.exports.getConditions = (zipcode) => {
   return new Promise((resolve, reject) => {
@@ -9,7 +9,8 @@ module.exports.getConditions = (zipcode) => {
       reject("Invalid zipcode");
     }
     else{
-      const url = `http://api.wunderground.com/api/b63c518dd881ef89/conditions/q/${zipcode}.json`;
+      const wundergroundapikey = config.wundergroundapikey;
+      const url = `http://api.wunderground.com/api/${wundergroundapikey}/conditions/q/${zipcode}.json`;
       http.get(url,(res) => {
         res.pipe(bl((err, data) => {
           try{
