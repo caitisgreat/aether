@@ -20,8 +20,7 @@ router.get('/ping', function(req, res) {
  * @param  {Object} res the Response object
  * @return JSON Object { conditions: {} }
  */
-router.get('/conditions/:zipcode', (req, res) => {
-  debugger;
+router.get('/conditions/:zipcode', (req, res) => { 
   wunderground.getConditions(req.params.zipcode)
     .then((response) => {
       res.send(response);
