@@ -5,6 +5,12 @@ router = express.Router();
 wunderground = require('../weatherapis/wunderground');
 
 /**
+ * Models
+ */
+require('../models/errorMessage.js');
+require('../models/conditions.js');
+
+/**
  * Ping test method
  * @param  {Object} req the Request object
  * @param  {Object} res the Response object
@@ -20,7 +26,7 @@ router.get('/ping', function(req, res) {
  * @param  {Object} res the Response object
  * @return JSON Object { conditions: {} }
  */
-router.get('/conditions/:zipcode', (req, res) => { 
+router.get('/conditions/:zipcode', (req, res) => {
   wunderground.getConditions(req.params.zipcode)
     .then((response) => {
       res.send(response);
