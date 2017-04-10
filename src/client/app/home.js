@@ -1,3 +1,5 @@
+var angular = require('angular');
+
 (function () {
   'use strict';
 
@@ -10,7 +12,7 @@
  */
   .config(function HomeConfig ($routeProvider) {
     $routeProvider.when('/', {
-      templateUrl: 'home.tpl.html',
+      templateUrl: 'templates/home.pug',
       controller: 'HomeCtrl'
     });
   })

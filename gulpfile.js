@@ -17,6 +17,11 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist/client/templates'));
 });
 
+gulp.task('assets', function () {
+  return gulp.src('src/client/assets/*')
+    .pipe(gulp.dest('dist/client/assets'));
+});
+
 gulp.task('package', function() {
   return gulp.src('package.json')
     .pipe(gulp.dest('dist/'));
@@ -27,4 +32,4 @@ gulp.task('readme', function() {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('default', ['server', 'client', 'html', 'package', 'readme']);
+gulp.task('default', ['server', 'client', 'html', 'assets', 'package', 'readme']);

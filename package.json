@@ -21,7 +21,7 @@
   "scripts": {
     "clean": "rm -rf bin && rm -rf dist",
     "build": "npm run clean && webpack --config ./webpack.config.js --progress --colors && gulp",
-    "start": "node dist/server"
+    "start": "node server"
   },
   "repository": {
     "type": "git",

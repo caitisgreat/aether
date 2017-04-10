@@ -6,4 +6,4 @@ module.exports = class errorMessage {
     this.statusCode = statusCode;
     this.message= message;
   }
-}
+};

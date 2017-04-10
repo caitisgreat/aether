@@ -1,9 +1,13 @@
 var angular = require('angular');
+require('angular-route');
+require('./home.js');
+require('./about.js');
 
 (function () {
   'use strict';
 
   angular.module("aether", [
+    'ngRoute',
     'aether.home',
     'aether.about'
   ])
@@ -24,6 +28,6 @@ var angular = require('angular');
    * AppController
    * The controller defined for Home route
    */
-    .controller('HomeCtrl', function AppController ($scope) {
+    .controller('AppCtrl', function AppController ($scope) {
     });
 })();
