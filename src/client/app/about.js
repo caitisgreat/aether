@@ -12,7 +12,7 @@ var angular = require('angular');
  */
   .config(function AboutConfig ($routeProvider) {
     $routeProvider.when('/about', {
-      templateUrl: 'about.tpl.html',
+      templateUrl: 'templates/about.pug',
       controller: 'AboutCtrl'
     });
   })
