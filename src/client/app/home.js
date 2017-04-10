@@ -22,6 +22,7 @@ var angular = require('angular');
  * The controller defined for Home route
  */
   .controller('HomeCtrl', function HomeController ($scope) {
+    $scope.input = { zipCode : '18031'};
   });
 
 })();

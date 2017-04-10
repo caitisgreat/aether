@@ -16,9 +16,7 @@ let app = express();
  * All Environments
  */
 
- app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
- console.log(path.join(__dirname, 'client/assets'));
-
+app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'client/templates'));
 app.set('view engine', 'pug');
