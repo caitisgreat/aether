@@ -1,3 +1,5 @@
+'use strict';
+
 var api, express, path, router;
 
 api = require('./api');
