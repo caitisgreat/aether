@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Class represents an error message with appropirate HTTP response code
  */
