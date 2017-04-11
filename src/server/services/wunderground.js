@@ -33,12 +33,13 @@ config = require('../config.json');
                 let message = parsedData.response.error.description;
                 reject(new ErrorMessage(404, message));
               } else {
-                var condObject = new Conditions().fromWunderground(parsedData);
+                var condObject = new Conditions();
+                condObject.fromWunderground(parsedData);
                 console.log(condObject);
-                resolve(parsedData);
+                resolve({ parsedData: parsedData, condObject: condObject});
               }
-            } catch (e) {
-              reject(new ErrorMessage(500, e));
+            } catch(e) {
+              reject(new ErrorMessage(500, e.message));
             }
           }));
         });
@@ -64,7 +65,7 @@ config = require('../config.json');
                 resolve(parsedData);
               }
             } catch (e) {
-              reject(new errorMessage(500, e));
+              reject(new errorMessage(500, e.message));
             }
           }));
         });
