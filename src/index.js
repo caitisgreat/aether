@@ -1,57 +1,57 @@
-'use strict';
+(function() {
+  'use strict';
+  
+  /**
+   * Module Dependencies
+   */
+  let api, debug, express, http, path, routes;
 
-/**
- * Module Dependencies
- */
-let api, debug, express, http, path, routes;
+  api = require('./server/routes/api');
+  debug = require('debug');
+  express = require('express');
+  http = require('http');
+  path = require('path');
+  routes = require('./server/routes');
 
-api = require('./server/routes/api');
-debug = require('debug');
-express = require('express');
-http = require('http');
-path = require('path');
-routes = require('./server/routes');
+  let app = express();
 
-let app = express();
+  /**
+   * All Environments
+   */
 
-/**
- * All Environments
- */
+  app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', path.join(__dirname, 'client/templates'));
+  app.set('view engine', 'pug');
 
- app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
- console.log(path.join(__dirname, 'client/assets'));
+  const env = process.env.NODE_ENV || 'development';
 
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'client/templates'));
-app.set('view engine', 'pug');
+  /**
+   * Development Environment
+   */
 
-const env = process.env.NODE_ENV || 'development';
+  if (env == 'development') {
+    // TODO
+  }
 
-/**
- * Development Environment
- */
+  /**
+   * Production Environment
+   */
 
-if (env == 'development') {
-  // TODO
-}
+  if (env == 'production') {
+    // TODO
+  }
 
-/**
- * Production Environment
- */
+  /**
+   * Routes
+   */
 
-if (env == 'production') {
-  // TODO
-}
+  app.use('/', routes);
 
-/**
- * Routes
- */
-
-app.use('/', routes);
-
-/**
- * Initialize the Server
- */
-http.createServer(app).listen(app.get('port'), function() {
-  console.log(`Express server listening on port ${app.get('port')}`);
-});
+  /**
+   * Initialize the Server
+   */
+  http.createServer(app).listen(app.get('port'), function() {
+    console.log(`Express server listening on port ${app.get('port')}`);
+  });
+})();
