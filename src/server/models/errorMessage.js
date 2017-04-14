@@ -5,23 +5,23 @@
    * Class represents an error message with appropirate HTTP response code
    */
   module.exports = class ErrorMessage {
-    constructor(statusCode, message) {
-      this._statusCode = statusCode;
-      this._message = message;
+    constructor(code, msg) {
+      this.statusCode = code;
+      this.message = msg;
     }
 
-    get statusCode () {
-      return this._statusCode;
+    get StatusCode () {
+      return this.statusCode;
     }
-    set statusCode (value) {
-      this._statusCode = value;
+    set StatusCode (value) {
+      this.statusCode = value;
     }
 
-    get message () {
-      return this._message;
+    get Message () {
+      return this.message;
     }
-    set message (value) {
-      this._message = value;
-    }    
+    set Message (value) {
+      this.message = value;
+    }
   };
 })();
