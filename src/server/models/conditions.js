@@ -1,152 +1,163 @@
 (function() {
   'use strict';
   module.exports = class Conditions {
-    constructor() {
-      this._precision = 3;
-      this._windDirSectors = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
-    }
 
     /**
-     * condition (get/set)
+     * Condition (get/set)
      * describes weather conditions, like Cloudy, Clear, Raining, Snowing, etc
      */
-    get condition() {
-      return this._condition;
+    get Condition() {
+      return this.condition;
     }
-    set condition(value) {
-      this._condition = value;
+    set Condition(value) {
+      this.condition = value;
     }
 
     /**
-     * degF (get/set)
+     * DegreesFahrenheit (get/set)
      * describes the temperature in degrees Fahrenheit
      */
-    get degF() {
-      return this._degF;
+    get DegreesFahrenheit() {
+      return this.degF;
     }
-    set degF(value) {
+    set DegreesFahrenheit(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._degF = this.round(value, this._precision);
-        this._degC = this.round(((value - 32) * 5 / 9), this._precision);
+        this.degF = this.round(value, this.precision);
+        this.degC = this.round(((value - 32) * 5 / 9), this.precision);
       }
     }
 
     /**
-     * degC (get/set)
+     * DegreesCelsius (get/set)
      * describes the temperature in degrees Celsius
      */
-    get degC() {
-      return this._degC;
+    get DegreesCelsius() {
+      return this.degC;
     }
-    set degC(value) {
+    set DegreesCelsius(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._degC = this.round(value, this._precision);
-        this._degF = this.round(((9 / 5 * value) - 32), this._precision);
+        this.degC = this.round(value, this.precision);
+        this.degF = this.round(((9 / 5 * value) - 32), this.precision);
       }
     }
 
     /**
-     * windMph (get/set)
+     * WindSpeedMph (get/set)
      * describes the wind speed in miles per hour
      */
-    get windMph() {
-      return this._windMph;
+    get WindSpeedMph() {
+      return this.windMph;
     }
-    set windMph(value) {
+    set WindSpeedMph(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._windMph = this.round(value, this._precision);
-        this._windKm = this.round(value * 1.609344, this._precision);
+        this.windMph = this.round(value, this.precision);
+        this.windKm = this.round(value * 1.609344, this.precision);
       }
     }
 
     /**
-     * windKm (get/set)
+     * WindSpeedKMH (get/set)
      * describes the wind speed in kilometers per hour
      */
-    get windKm() {
-      return this._windMph;
+    get WindSpeedKmh() {
+      return this.windMph;
     }
-    set windKm(value) {
+    set WindSpeedKmh(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._windKm = this.round(value, this._precision);
-        this._windMph = this.round(value / 1.609344, this._precision);
+        this.windKm = this.round(value, this.precision);
+        this.windMph = this.round(value / 1.609344, this.precision);
       }
     }
 
     /**
-     * windDir (get/set)
+     * WindDirSectors
+     * An array of directions wind can blow from
+     */
+    get WindDirSectors() {
+      return ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
+    }
+
+    /**
+     * WindDirection (get/set)
      * describes the wind direction in cardinal directions
      */
-    get windDir() {
-      return this._windDir;
+    get WindDirection() {
+      return this.windDir;
     }
-    set windDir(value) {
+    set WindDirection(value) {
       let val = Number(value);
       if (!isNaN(val)) {
         let index = Math.round(((val % 360) / 22.5));
-        this._windDir = this._windDirSectors[index];
+        this.windDir = this.WindDirSectors[index];
       } else {
-        this._windDir = value;
+        this.windDir = value;
       }
     }
 
     /**
-     * pressureMb (get/set)
+     * PressureMb (get/set)
      * describes the barometric pressure in millibars
      */
-    get pressureMb() {
-      return this._pressureMb;
+    get PressureMb() {
+      return this.pressureMb;
     }
-    set pressureMb(value) {
+    set PressureMb(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._pressureMb = this.round(value, this._precision);
-        this._pressureInHg = this.round(value / 33.863636, this._precision);
+        this.pressureMb = this.round(value, this.precision);
+        this.pressureInHg = this.round(value / 33.863636, this.precision);
       }
     }
 
     /**
-     * pressureInHg (get/set)
+     * PressureInHg (get/set)
      * describes the barometric pressure in inches of mercury
      */
-    get pressureInHg() {
-      return this._pressureInHg;
+    get PressureInHg() {
+      return this.pressureInHg;
     }
-    set pressureInHg(value) {
+    set PressureInHg(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._pressureInHg = this.round(value, this._precision);
-        this._pressureMb = this.round(value * 33.863636, this._precision);
+        this.pressureInHg = this.round(value, this.precision);
+        this.pressureMb = this.round(value * 33.863636, this.precision);
       }
     }
 
     /**
-     * pressureTrend (get/set)
+     * PressureTrend (get/set)
      * describes the barometric pressure trend]
      */
-    get pressureTrend() {
-      return this._pressureTrend;
+    get PressureTrend() {
+      return this.pressureTrend;
     }
-    set pressureTrend(value) {
-      this._pressureTrend = value;
+    set PressureTrend(value) {
+      if (value === "+")
+        this.pressureTrend = "Rising";
+      else if (value === "0")
+        this.pressureTrend = "Steady";
+      else if (value === "-")
+        this.pressureTrend = "Falling";
+      else
+        this.pressureTrend = value;
     }
 
     /**
      * dewpointF (get/set)
      * describes the temperature in degrees Fahrenheit at which the air must be cooled for water vapor to condense
      */
-    get dewpointF() {
-      return this._degF;
+    get DewpointFahrenheit() {
+      return this.degF;
     }
-    set dewpointF(value) {
+    set DewpointFahrenheit(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._dewpointF = this.round(value, this._precision);
-        this._dewpointC = this.round(((value - 32) * 5 / 9), this._precision);
+        this.dewpointF = this.round(value, this.precision);
+        this.dewpointC = this.round(((value - 32) * 5 / 9), this.precision);
       }
     }
 
@@ -154,14 +165,14 @@
      * dewpointC (get/set)
      * describes the temperature in degrees Celsius at which the air must be cooled for water vapor to condense
      */
-    get dewpointC() {
-      return this._dewpointC;
+    get DewpointCelsius() {
+      return this.dewpointC;
     }
-    set dewpointC(value) {
+    set DewpointCelsius(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._dewpointC = this.round(value, this._precision);
-        this._dewpointF = this.round(((9 / 5 * value) - 32), this._precision);
+        this.dewpointC = this.round(value, this.precision);
+        this.dewpointF = this.round(((9 / 5 * value) - 32), this.precision);
       }
     }
 
@@ -169,14 +180,14 @@
      * visibilityMi (get/set)
      * describes the greatest distance toward the horizon at which prominent objects can be identified in miles
      */
-    get visibilityMi() {
-      return this._visibilityMi;
+    get VisibilityMi() {
+      return this.visibilityMi;
     }
-    set visibilityMi(value) {
+    set VisibilityMi(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._visibilityMi = this.round(value, this._precision);
-        this._visibilityKm = this.round(value * 1.609344, this._precision);
+        this.visibilityMi = this.round(value, this.precision);
+        this.visibilityKm = this.round(value * 1.609344, this.precision);
       }
     }
 
@@ -184,45 +195,52 @@
      * visibilityKm (get/set)
      * describes the greatest distance toward the horizon at which prominent objects can be identified in kilometers
      */
-    get visibilityKm() {
-      return this._visibilityKm;
+    get VisibilityKm() {
+      return this.visibilityKm;
     }
-    set visibilityKm(value) {
+    set VisibilityKm(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._visibilityKm = this.round(value, this._precision);
-        this._visibilityMi = this.round(value / 1.609344, this._precision);
+        this.visibilityKm = this.round(value, this.precision);
+        this.visibilityMi = this.round(value / 1.609344, this.precision);
       }
     }
 
     /**
-     * precipitationIn (get/set)
+     * PrecipitationIn (get/set)
      * describes total precipitation today in inches
      */
-    get precipitationIn() {
-      return this._precipitationIn;
+    get PrecipitationIn() {
+      return this.precipitationIn;
     }
-    set precipitationIn(value) {
+    set PrecipitationIn(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._precipitationIn = this.round(value, this._precision);
-        this._precipitationMetric = this.round(value * 25.4, this._precision);
+        this.precipitationIn = this.round(value, this.precision);
+        this.precipitationMetric = this.round(value * 25.4, this.precision);
       }
     }
 
     /**
-     * precipitationMetric (get/set)
+     * PrecipitationMetric (get/set)
      * describes total precipitation today in millimeters
      */
-    get precipitationMetric() {
-      return this._precipitationMetric;
+    get PrecipitationMetric() {
+      return this.precipitationMetric;
     }
-    set precipitationMetric(value) {
+    set PrecipitationMetric(value) {
       value = Number(value);
       if (!isNaN(value)) {
-        this._precipitationMetric = this.round(value, this._precision);
-        this._precipitationIn = this.round(value / 25.4, this._precision);
+        this.precipitationMetric = this.round(value, this.precision);
+        this.precipitationIn = this.round(value / 25.4, this.precision);
       }
+    }
+
+    /**
+     * Precision for rounding function
+     */
+    get precision() {
+      return 3;
     }
 
     /**
@@ -256,15 +274,16 @@
     }
 
     fromWunderground(resObject) {
-      this.condition = resObject.current_observation.weather;
-      this.degF = resObject.current_observation.temp_f;
-      this.windMph = resObject.current_observation.wind_mph;
-      this.windDir = resObject.current_observation.wind_degrees;
-      this.pressureMb = resObject.current_observation.pressure_mb;
-      this.pressureTrend = resObject.current_observation.pressure_trend;
-      this.dewpointF = resObject.current_observation.dewpoint_f;
-      this.visibilityMi = resObject.current_observation.visibility_mi;
-      this.precipitationIn = resObject.current_observation.precip_today_in;
+      this.Condition = resObject.current_observation.weather;
+      this.DegreesFahrenheit = resObject.current_observation.temp_f;
+      this.WindSpeedMph = resObject.current_observation.wind_mph;
+      this.WindDirection = resObject.current_observation.wind_degrees;
+      this.PressureMb = resObject.current_observation.pressure_mb;
+      this.PressureTrend = resObject.current_observation.pressure_trend;
+      this.DewpointFahrenheit = resObject.current_observation.dewpoint_f;
+      this.VisibilityMi = resObject.current_observation.visibility_mi;
+      this.PrecipitationIn = resObject.current_observation.precip_today_in;
+      return this;
     }
   };
 })();
