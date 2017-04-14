@@ -1,8 +1,14 @@
-var express, router, wunderground, errorMessage;
+var express, router;
 
 express = require('express');
 router = express.Router();
-wunderground = require('../services/wunderground');
+
+/**
+ * Services
+ */
+
+const Validator = require('../services/validator');
+const Wunderground = require('../services/wunderground');
 
 (function() {
   'use strict';
@@ -26,22 +32,27 @@ wunderground = require('../services/wunderground');
    * @return JSON Object { conditions: {} }
    */
   router.get('/conditions/:zipcode?', (req, res) => {
-    if (req.params.zipcode !== null) {
-      wunderground.getConditions(req.params.zipcode)
-        .then((response) => {
-          res.send(response);
-        })
-        .catch((errorMessage) => {
-          res.status(errorMessage.statusCode).send({
-            error: errorMessage.message
-          });
-        });
-    } else {
-      res.status(400).send({
-        error: 'Zip code value is required'
-      });
-    }
+    let zipcode = req.params.zipcode;
+    let conditionsRules = [{
+      rules: ['required', 'pattern(^\\d{5}(?:[-\\s]\\d{4})?$)'],
+      name: 'Zip Code',
+      value: zipcode
+    }];
 
+    (new Validator())
+    .validate(conditionsRules)
+      .then(() => {
+        return Wunderground.getConditions(zipcode);
+      })
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((e) => {
+        let error = JSON.stringify({
+          error: e.message
+        });
+        res.status(e.statusCode).send(error);
+      });
   });
 
   /**
@@ -51,21 +62,27 @@ wunderground = require('../services/wunderground');
    * @return JSON Object { forecast: {} }
    */
   router.get('/forecast/:zipcode?', (req, res) => {
-    if (req.params.zipcode !== null) {
-      wunderground.getForecast(req.params.zipcode)
-        .then((response) => {
-          res.send(response);
-        })
-        .catch((errorMessage) => {
-          res.status(errorMessage.statusCode).send({
-            error: errorMessage.message
-          });
+    let zipcode = req.params.zipcode;
+    let forecastRules = [{
+      rules: ['required', 'pattern(^\\d{5}(?:[-\\s]\\d{4})?$)'],
+      name: 'Zip Code',
+      value: zipcode
+    }];
+
+    (new Validator())
+    .validate(forecastRules)
+      .then(() => {
+        return Wunderground.getForecast(zipcode);
+      })
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((e) => {
+        let error = JSON.stringify({
+          error: e.message
         });
-    } else {
-      res.status(400).send({
-        error: 'Zip code value is required'
+        res.status(e.statusCode).send(error);
       });
-    }
   });
 
   module.exports = router;
