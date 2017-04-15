@@ -237,6 +237,47 @@
     }
 
     /**
+     * RelativeHumidity (get/set)
+     * describes current relative humidity as a percentage
+     */
+    get RelativeHumidity() {
+      return this.relativeHumidity;
+    }
+    set RelativeHumidity(value) {
+      this.relativeHumidity = value;
+    }
+
+    /**
+     * HeatIndexFahrenheit (get/set)
+     * describes the heat index temperature in degrees Fahrenheit
+     */
+    get HeatIndexFahrenheit() {
+      return this.heatIndexF;
+    }
+    set HeatIndexFahrenheit(value) {
+      value = Number(value);
+      if (!isNaN(value)) {
+        this.heatIndexF = this.round(value, this.precision);
+        this.heatIndexC = this.round(((value - 32) * 5 / 9), this.precision);
+      }
+    }
+
+    /**
+     * HeatIndexCelsius (get/set)
+     * describes the heat index temperature in degrees Celsius
+     */
+    get HeatIndexCelsius() {
+      return this.heatIndexC;
+    }
+    set HeatIndexCelsius(value) {
+      value = Number(value);
+      if (!isNaN(value)) {
+        this.heatIndexC = this.round(value, this.precision);
+        this.heatIndexF = this.round(((9 / 5 * value) - 32), this.precision);
+      }
+    }
+
+    /**
      * Precision for rounding function
      */
     get precision() {
@@ -283,7 +324,10 @@
       this.DewpointFahrenheit = resObject.current_observation.dewpoint_f;
       this.VisibilityMi = resObject.current_observation.visibility_mi;
       this.PrecipitationIn = resObject.current_observation.precip_today_in;
+      this.RelativeHumidity = resObject.current_observation.relative_humidity;
+      this.HeatIndexFahrenheit = resObject.current_observation.heat_index_f;
       return this;
+
     }
   };
 })();
