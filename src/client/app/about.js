@@ -1,27 +1,26 @@
-var angular = require('angular');
+const angular = require('angular');
 
-(function () {
+(function() {
   'use strict';
 
   angular.module("aether.about", [])
 
-/**
- * AboutConfig
- * About module ngRoute configuration
- * @param {Object} $routeProvider Used for configuring routes.
- */
-  .config(function AboutConfig ($routeProvider) {
-    $routeProvider.when('/about', {
-      templateUrl: 'templates/about.pug',
-      controller: 'AboutCtrl'
-    });
-  })
+    /**
+     * AboutConfig
+     * About module ngRoute configuration
+     * @param {Object} $routeProvider Used for configuring routes.
+     */
+    .config(function AboutConfig($routeProvider) {
+      $routeProvider.when('/about', {
+        templateUrl: 'templates/about.pug',
+        controller: 'AboutCtrl'
+      });
+    })
 
-/**
- * AboutController
- * The controller defined for About route
- */
-  .controller('AboutCtrl', function AboutController ($scope) {
-  });
+    /**
+     * AboutController
+     * The controller defined for About route
+     */
+    .controller('AboutCtrl', function AboutController($scope) {});
 
 })();

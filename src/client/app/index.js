@@ -1,33 +1,31 @@
-var angular = require('angular');
+const angular = require('angular');
 require('angular-route');
 require('./home.js');
 require('./about.js');
 
-(function () {
+(function() {
   'use strict';
 
   angular.module("aether", [
-    'ngRoute',
-    'aether.home',
-    'aether.about'
-  ])
+      'ngRoute',
+      'aether.home',
+      'aether.about'
+    ])
 
-  /**
-   * AppConfig
-   * App module ngRoute configuration
-   * @param {Object} $routeProvider Used for configuring routes.
-   */
-  .config(function AppConfig ($routeProvider) {
-    $routeProvider.otherwise(
-      {
+    /**
+     * AppConfig
+     * App module ngRoute configuration
+     * @param {Object} $routeProvider Used for configuring routes.
+     */
+    .config(function AppConfig($routeProvider) {
+      $routeProvider.otherwise({
         redirectTo: '/home'
       });
-  })
+    })
 
-  /**
-   * AppController
-   * The controller defined for Home route
-   */
-    .controller('AppCtrl', function AppController ($scope) {
-    });
+    /**
+     * AppController
+     * The controller defined for Home route
+     */
+    .controller('AppCtrl', function AppController($scope) {});
 })();
