@@ -1,11 +1,13 @@
 const angular = require('angular');
-require('./weather.js')
+require('./weather.js');
+require('./error.js');
 
 (function() {
   'use strict';
 
   angular.module('aether.services.geolocation', [
-      'aether.services.weather'
+      'aether.services.weather',
+      'aether.services.error'
     ])
 
     /**
@@ -13,37 +15,61 @@ require('./weather.js')
      * The geolocation service allows for access to HTML5 geolocation methods
      * This, in essence, lets you get the user's zipcode by using reverse geolookup
      * based on their listed geolocation (HTML5 navigator)
-     * @param  {$service} $http          HTTP Request/Response service
-     * @param  {$service} WeatherFactory Weather API Service
-     * @return {$service}                GeoLocation Service
+     * @param  {$service} $q             Angular Promise service
+     * @param  {$service} WeatherFactory Weather API service
+     * @return {$service}                GeoLocation service
      */
-
-    .service('GeoLocationService', ['$scope', '$q', 'WeatherFactory', function($scope, $q, WeatherFactory) {
-      this.lastRetrievedLocation = 0;
-      this.getLocation = function(force = false) {
+    .service('GeoLocationService', function($q, WeatherFactory, ErrorMessageFactory) {
+      /**
+       * getLocation
+       * Attempts to access the user agent's current location via the HTML5 geolocation API
+       * @return {Promise} promises to resolve to a Position.Coordinates objec
+       * @throws GeoServiceUnavailable The browser doesn't support geolocation.
+       * @throws GeoPermissionDenied The acquisition of the geolocation information failed because the page didn't have the permission to do it.
+       * @throws GeoTimeout The time allowed to acquire the geolocation, defined by PositionOptions.timeout information was reached before the information was obtained.
+       * @throws GeoPositionUnavailable The acquisition of the geolocation failed because at least one internal source of position returned an internal error.
+       */
+      this.getLocation = function() {
         return $q((resolve, reject) => {
           if ("geolocation" in navigator) {
             let options = {
               enableHighAccuracy: true,
               timeout: 5000,
-              maximumAge: (!force ? (this.lastRetrievedLocation >= 0 ? (new Date().getTime() - lastRetrievedLocation) : 0) : 0)
+              maximumAge: 0
             };
 
             let success = function(pos) {
-              lastRetrievedLocation = pos.timestamp;
               resolve(pos.coords);
             };
 
             let error = function(err) {
-              reject(err.message);
+              switch (err.code) {
+                case 1: // Permission Denied
+                  reject(ErrorMessageFactory.make("GeoPermissionDenied", "The user refused to allow geolocation services to be used."));
+                  break;
+                case 3: // Timeout
+                  reject(ErrorMessageFactory.make("GeoTimeout", "The Position request failed due to time out."));
+                  break;
+                default:
+                  reject(ErrorMessageFactory.make("GeoPositionUnavailable", "The Position request failed.  Unable to acquire the user's position at this time."));
+                  break;
+              }
             };
 
-            console.log(options);
             navigator.geolocation.getCurrentPosition(success, error, options);
           } else {
-            reject("geolocation is not available");
+            reject(ErrorMessageFactory.make("GeoServiceUnavailable", "This browser does not support geolocation services."));
           }
         });
       };
-    }]);
+
+      /**
+       * [description]
+       * @param  {[type]} loc [description]
+       * @return {[type]}     [description]
+       */
+      this.doLookup = function(loc) {
+        return WeatherFactory.getLocation(loc);
+      };
+    });
 })();

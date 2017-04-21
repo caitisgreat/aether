@@ -2,6 +2,6 @@ div(ng-controller='HomeCtrl')
   div(class='input')
     div(class='warnings')
     label(for='zipCode') Zip Code:
-    a(id='zipCode' href='' ng-hide='edit' ng-show='!edit' ng-click='edit = !edit') {{input.zipCode}}
-    input(type='text' ng-hide='!edit' ng-blur='edit = !edit' ng-show='edit' ng-model='input.zipCode')
+    a(id='zipCode' href='' ng-hide='edit' ng-show='!edit' ng-click='edit = !edit') {{zipCode}}
+    input(type='text' ng-hide='!edit' ng-blur='edit = !edit' ng-show='edit')
   div(class='conditions')

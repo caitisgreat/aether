@@ -39,8 +39,7 @@ config = require('../config.json');
               return reject(new ErrorMessage(404, errMessage));
             }
 
-            // map Weather Underground data to Conditions model
-            resolve(result);
+            resolve(parsedData);
           }));
         });
       } catch (e) {

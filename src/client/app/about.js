@@ -3,7 +3,7 @@ const angular = require('angular');
 (function() {
   'use strict';
 
-  angular.module("aether.about", [])
+  angular.module('aether.about', [])
 
     /**
      * AboutConfig

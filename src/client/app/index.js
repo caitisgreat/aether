@@ -6,7 +6,7 @@ require('./about.js');
 (function() {
   'use strict';
 
-  angular.module("aether", [
+  angular.module('aether', [
       'ngRoute',
       'aether.home',
       'aether.about'
