@@ -25,6 +25,41 @@ const Wunderground = require('../services/wunderground');
     });
   });
 
+
+  /**
+   * Get location(s) method
+   * @param  {Object} req the Request object
+   * @param  {Object} res the Response object
+   * @return JSON Object { locations: {} }
+   */
+  router.get('/location/:location?', (req, res) => {
+    let location = req.params.location;
+    let locationRules = [{
+      rules: ['required'],
+      name: 'Location',
+      value: location
+    }];
+
+    // TODO add more validation for location types
+    //   this includes "State/City", "Country/City", "zipcode", and "Lat,Lon"
+
+    (new Validator())
+    .validate(locationRules)
+      .then(() => {
+        return Wunderground.getLocation(location);
+      })
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((e) => {
+        let error = JSON.stringify({
+          error: e.message
+        });
+        res.status(e.statusCode).send(error);
+      });
+
+  });
+
   /**
    * Get conditions method
    * @param  {Object} req the Request object

@@ -20,6 +20,35 @@ config = require('../config.json');
   const Conditions = require('../models/conditions.js');
 
   /**
+   * getLocation returns a location object for a given location
+   * @param  {[string]} location  A location as a string, this can mean many things
+   * @return {[Promise]}          Promise for location data
+   */
+
+  module.exports.getLocation = (loc) => {
+    const url = `http://api.wunderground.com/api/${wundergroundapikey}/geolookup/q/${loc}.json`;
+    return new Promise((resolve, reject) => {
+      try {
+        http.get(url, (res) => {
+          res.pipe(bl((err, data) => {
+            let parsedData = JSON.parse(data);
+
+            // handle errors from Weather Underground
+            if (parsedData.response.error) {
+              let errMessage = parsedData.response.error.description;
+              return reject(new ErrorMessage(404, errMessage));
+            }
+
+            resolve(parsedData);
+          }));
+        });
+      } catch (e) {
+        reject(new ErrorMessage(500, e.message));
+      }
+    });
+  };
+
+  /**
    * getConditions returns the weather conditions for a given zipcode
    * @param  {[string]} zipcode zipcode to return weather of
    * @return {[Promise]}         Promise for weather condition data

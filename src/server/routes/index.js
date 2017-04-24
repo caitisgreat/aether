@@ -26,7 +26,9 @@ router = express.Router();
   });
 
   // redirect all others to the index (HTML5 history)
-  router.get('*', index);
+  router.get('*', function(req, res) {
+    res.render('index');
+  });
 
   module.exports = router;
 })();

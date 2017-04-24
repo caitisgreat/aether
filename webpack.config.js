@@ -15,9 +15,9 @@ module.exports = [{
     node: {
       __dirname: false
     },
-    entry: './src/index.js',
+    entry: './src/app.js',
     output: {
-      path: path.join(__dirname, 'bin'),
+      path: path.join(__dirname, 'dist'),
       filename: 'server.js'
     },
     externals: nodeModules,
@@ -34,9 +34,9 @@ module.exports = [{
   {
     name: 'client',
     devtool: 'eval',
-    entry: './src/client/app/index.js',
+    entry: './src/client/js/app.js',
     output: {
-      path: path.join(__dirname, 'bin'),
+      path: path.join(__dirname, 'dist/client/assets'),
       filename: 'client.js'
     },
     module: {
@@ -44,6 +44,10 @@ module.exports = [{
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader'
+        },
+        {
+          test: /\.scss$/,
+          loader: 'style-loader!css-loader!sass-loader'
         }
       ]
     }
