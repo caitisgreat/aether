@@ -19,7 +19,7 @@ require('./error.js');
      * @param  {$service} WeatherFactory Weather API service
      * @return {$service}                GeoLocation service
      */
-    .service('GeoLocationService', function($q, WeatherFactory, ErrorMessageFactory) {
+    .service('GeoLocationService', function($q, WeatherFactory, ErrorFactory) {
       /**
        * getLocation
        * Attempts to access the user agent's current location via the HTML5 geolocation API
@@ -45,20 +45,20 @@ require('./error.js');
             let error = function(err) {
               switch (err.code) {
                 case 1: // Permission Denied
-                  reject(ErrorMessageFactory.make("GeoPermissionDenied", "The user refused to allow geolocation services to be used."));
+                  reject(ErrorFactory.make("GeoPermissionDenied", "The user refused to allow geolocation services to be used."));
                   break;
                 case 3: // Timeout
-                  reject(ErrorMessageFactory.make("GeoTimeout", "The Position request failed due to time out."));
+                  reject(ErrorFactory.make("GeoTimeout", "The Position request failed due to time out."));
                   break;
                 default:
-                  reject(ErrorMessageFactory.make("GeoPositionUnavailable", "The Position request failed.  Unable to acquire the user's position at this time."));
+                  reject(ErrorFactory.make("GeoPositionUnavailable", "The Position request failed.  Unable to acquire the user's position at this time."));
                   break;
               }
             };
 
             navigator.geolocation.getCurrentPosition(success, error, options);
           } else {
-            reject(ErrorMessageFactory.make("GeoServiceUnavailable", "This browser does not support geolocation services."));
+            reject(ErrorFactory.make("GeoServiceUnavailable", "This browser does not support geolocation services."));
           }
         });
       };

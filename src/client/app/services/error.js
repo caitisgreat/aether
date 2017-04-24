@@ -33,7 +33,7 @@ const angular = require('angular');
   };
 
   angular.module('aether.services.error', [])
-    .factory("ErrorMessageFactory", function() {
+    .factory("ErrorFactory", function() {
       return {
         make: function (err, msg) {
           return new ErrorMessage(err, msg);
