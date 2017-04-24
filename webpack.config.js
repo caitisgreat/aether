@@ -17,7 +17,7 @@ module.exports = [{
     },
     entry: './src/index.js',
     output: {
-      path: path.join(__dirname, 'bin'),
+      path: path.join(__dirname, 'dist'),
       filename: 'server.js'
     },
     externals: nodeModules,
@@ -36,7 +36,7 @@ module.exports = [{
     devtool: 'eval',
     entry: './src/client/app/index.js',
     output: {
-      path: path.join(__dirname, 'bin'),
+      path: path.join(__dirname, 'dist/client/assets'),
       filename: 'client.js'
     },
     module: {
