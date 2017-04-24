@@ -5,6 +5,7 @@
   "main": "src/app.js",
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
     "bl": "^1.2.0",
     "express": "^4.15.2",
     "pug": "^2.0.0-beta11"
