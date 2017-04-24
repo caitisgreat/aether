@@ -1,7 +1,16 @@
 const angular = require('angular');
 require('angular-route');
+
+/**
+ * Components
+ */
 require('./controllers/home.js');
 require('./controllers/about.js');
+
+/**
+ * Stylesheets
+ */
+require('../assets/app.scss');
 
 (function() {
   'use strict';

@@ -4,9 +4,6 @@ logs
 *.log
 npm-debug.log*
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directories
 node_modules/
 
@@ -20,7 +17,6 @@ node_modules/
 *.tgz
 
 # Prepared files
-bin/
 dist/
 
 # Configuration file
