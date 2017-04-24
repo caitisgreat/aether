@@ -33,3 +33,4 @@ gulp.task('readme', function() {
 });
 
 gulp.task('default', ['server', 'client', 'html', 'assets', 'package', 'readme']);
+gulp.task('dev', ['html', 'assets']);

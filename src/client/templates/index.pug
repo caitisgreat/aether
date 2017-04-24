@@ -6,12 +6,13 @@ html(lang="en" ng-app="aether")
     link(rel='stylesheet', href='assets/app.css')
     base(href="/")
   body
-    ul
-      li
-        a(href="/") Home
-      li
-        a(href="/about") About
     div(ng-controller='AppCtrl')
+      div(class="nav")
+        ul
+          li
+            a(href="/") Home
+          li
+            a(href="/about") About
       h1 aether - a clear skies weather app
       div(ng-view)
 

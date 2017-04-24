@@ -1,1 +1,34 @@
-p these are weather conditions
+div
+  p
+    label(for="CurrentCondition") Temperature:
+    span(id="CurrentCondition" ng-bind="conditions.condition")
+  p
+    label(for="Temperature") Temperature:
+    span(id="Temperature" ng-bind="(conditions.degF) + ' °F'")
+  p
+    label(for="WindSpeed") Wind Speed:
+    span(id="WindSpeed" ng-bind="(conditions.windMph) + ' MPH'")
+  p
+    label(for="WindDirection") Wind Direction:
+    span(id="WindDirection" ng-bind="conditions.windDir")
+  p
+    label(for="BarometricPressure") Barometric Pressure:
+    span(id="BarometricPressure" ng-bind="(conditions.pressureInHg) + ' inHg'")
+  p
+    label(for="PressureTrend") Trend:
+    span(id="PressureTrend" ng-bind="conditions.pressureTrend")
+  p
+    label(for="RelativeHumidity") Relative Humidity:
+    span(id="RelativeHumidity" ng-bind="conditions.relativeHumidity")
+  p
+    label(for="DewPoint") Dew Point:
+    span(id="DewPoint" ng-bind="(conditions.dewpointF) + ' °F'")
+  p
+    label(for="HeatIndex") Heat Index:
+    span(id="HeatIndex" ng-bind="(conditions.heatIndexF) + ' °F'")
+  p
+    label(for="Visibility") Visibility:
+    span(id="Visibility" ng-bind="(conditions.visibilityMi) + ' mi.'")
+  p
+    label(for="TotalPrecipitation") Total Precipitation:
+    span(id="TotalPrecipitation" ng-bind="(conditions.precipitationIn) + ' in'")
