@@ -21,7 +21,7 @@ const Wunderground = require('../services/wunderground');
    */
   router.get('/ping', function(req, res) {
     res.json({
-      ping: 'pong'
+      "ping": "pong"
     });
   });
 
@@ -80,7 +80,7 @@ const Wunderground = require('../services/wunderground');
         return Wunderground.getConditions(zipcode);
       })
       .then((data) => {
-        res.send(data);
+        res.json(data);
       })
       .catch((e) => {
         let error = JSON.stringify({

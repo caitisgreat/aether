@@ -69,8 +69,7 @@ config = require('../config.json');
 
             // map Weather Underground data to Conditions model
             let conditionsModel = new Conditions().fromWunderground(parsedData);
-            var result = JSON.stringify(conditionsModel);
-            resolve(result);
+            resolve(conditionsModel);
           }));
         });
       } catch (e) {
