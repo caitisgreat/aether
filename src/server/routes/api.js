@@ -49,13 +49,12 @@ const Wunderground = require('../services/wunderground');
         return Wunderground.getLocation(location);
       })
       .then((data) => {
-        res.send(data);
+        res.json(data);
       })
       .catch((e) => {
-        let error = JSON.stringify({
+        res.status(e.statusCode).json({
           error: e.message
         });
-        res.status(e.statusCode).send(error);
       });
 
   });
@@ -83,10 +82,9 @@ const Wunderground = require('../services/wunderground');
         res.json(data);
       })
       .catch((e) => {
-        let error = JSON.stringify({
+        res.status(e.statusCode).json({
           error: e.message
         });
-        res.status(e.statusCode).send(error);
       });
   });
 
@@ -110,13 +108,12 @@ const Wunderground = require('../services/wunderground');
         return Wunderground.getForecast(zipcode);
       })
       .then((data) => {
-        res.send(data);
+        res.json(data);
       })
       .catch((e) => {
-        let error = JSON.stringify({
+        res.status(e.statusCode).json({
           error: e.message
         });
-        res.status(e.statusCode).send(error);
       });
   });
 
