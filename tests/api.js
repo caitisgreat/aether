@@ -20,13 +20,16 @@
 
   describe('Test API response from endpoint(s)', () => {
     let zipcode = 18015;
+    let host = "localhost"
+    let port = 3000
 
     // GET /api/ping
     describe('GET /api/ping', () => {
-      it('ensures the reachability of a host on an IP network', (done) => {
-        chai.request('http://localhost:3000')
+      it(`ensures the reachability of the host (${host}) on an IP network`, (done) => {
+        chai.request(`http://${host}:${port}`)
           .get('/api/ping')
           .end((err, res) => {
+            expect(err).to.be.null;
             expect(res).to.have.status(200);
             expect(res).to.be.json;
             expect(res.body).to.have.property('ping').eql('pong');
@@ -38,9 +41,10 @@
     // GET /api/location
     describe('GET /api/location', () => {
       it(`returns location data for zip code ${zipcode}`, (done) => {
-        chai.request('http://localhost:3000')
+        chai.request(`http://${host}:${port}`)
           .get(`/api/location/${zipcode}`)
           .end((err, res) => {
+            expect(err).to.be.null;
             expect(res).to.have.status(200);
             expect(res).to.be.json;
             expect(res.body).to.have.property('location');
@@ -54,7 +58,7 @@
         // GET /api/conditions
         describe('GET /api/conditions', () => {
           it('returns current weather conditions for zip code 18015', (done) => {
-            chai.request('http://localhost:3000')
+            chai.request(`http://${host}:${port}`)
               .get(`/api/conditions/${zipcode}`)
               .end((err, res) => {
                 expect(res).to.have.status(200);
@@ -67,7 +71,7 @@
         // GET /api/forecast
         describe('GET /api/forecast', () => {
           it(`returns the weather forecast for zip code ${zipcode}`, (done) => {
-            chai.request('http://localhost:3000')
+            chai.request(`http://${host}:${port}`)
               .get(`/api/forecast/${zipcode}`)
               .end((err, res) => {
                 expect(res).to.have.status(200);

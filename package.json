@@ -31,8 +31,8 @@
   "scripts": {
     "clean": "rm -rf bin && rm -rf dist",
     "build": "npm run clean && webpack --config ./webpack.config.js --progress --colors && gulp",
-    "start": "node server",
-    "test": "npm run build && npm run start && mocha ./tests/api.js"
+    "start": "node ./dist/server",
+    "test": "mocha ./tests/api.js"
   },
   "repository": {
     "type": "git",
