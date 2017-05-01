@@ -3,10 +3,10 @@ const angular = require('angular');
 (function() {
   'use strict';
 
-  angular.module('aether.directives.conditions', [])
-  .directive("conditions", function() {
+  angular.module('aether.directives.forecast', [])
+  .directive("forecast", function() {
     return {
-      templateUrl: 'templates/conditions.pug',
+      templateUrl: 'templates/forecast.pug',
       restrict: 'E',
       replace: true
     };

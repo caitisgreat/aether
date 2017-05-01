@@ -18,6 +18,7 @@ config = require('../config.json');
    */
   const ErrorMessage = require('../models/errorMessage.js');
   const Conditions = require('../models/conditions.js');
+  const Forecast = require('../models/forecast.js');
 
   /**
    * getLocation returns a location object for a given location
@@ -92,9 +93,16 @@ config = require('../config.json');
               return reject(new ErrorMessage(404, errMessage));
             }
 
-            // map Weather Underground data to Forecast model
-            // TODO
-            resolve(parsedData);
+            let forecastPeriods = [];
+            if("forecast" in parsedData && "simpleforecast" in parsedData.forecast) {
+              let days = parsedData.forecast.simpleforecast.forecastday;
+              for(let i = 0; i < days.length; i++) {
+                let forecastModel = new Forecast().fromWunderground(days[i]);
+                forecastPeriods.push(forecastModel);
+              }
+            }
+
+            resolve(forecastPeriods);
           }));
         });
       } catch (e) {
