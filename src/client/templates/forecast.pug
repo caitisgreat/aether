@@ -1,0 +1,28 @@
+div(ng-repeat="period in forecast")
+  hr
+  b
+    span(ng-bind="'Forecast: ' + (period.period)")
+  p
+    label(for="Temperature") High:&nbsp;
+    span(id="Temperature" ng-bind="(period.highF) + ' °F'")
+  p
+    label(for="Temperature") Low:&nbsp;
+    span(id="Temperature" ng-bind="(period.lowF) + ' °F'")
+  p
+    label(for="CurrentCondition") Conditions:&nbsp;
+    span(id="CurrentCondition" ng-bind="period.condition")
+  p
+    label(for="WindSpeed") Avr. Wind Speed:&nbsp;
+    span(id="WindSpeed" ng-bind="(period.avrWindMph) + ' MPH'")
+  p
+    label(for="WindDirection") Avr. Wind Direction:&nbsp;
+    span(id="WindDirection" ng-bind="period.avrWindDir")
+  p
+    label(for="RelativeHumidity") Chance of Precipitation:&nbsp;
+    span(id="RelativeHumidity" ng-bind="(period.probOfPrecipitation) + '%'")
+  p
+    label(for="TotalPrecipitation") Total Precipitation:&nbsp;
+    span(id="TotalPrecipitation" ng-bind="(period.precipitationIn) + ' in'")
+  p
+    label(for="TotalSnowAccumulation") Total Snow Accumulation:&nbsp;
+    span(id="TotalSnowAccumulation" ng-bind="(period.snowIn) + ' in'")

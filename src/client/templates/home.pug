@@ -4,5 +4,6 @@ div(ng-controller='HomeCtrl')
     b
       label(for='zipCode') Zip Code:
     input(id='zipCode' type='text' ng-model='zipCode' value='{{zipCode}}')
-    button(type='button' ng-click='getConditions()') Get Conditions
-    div(class='conditions')
+    button(type='button' ng-click='getConditions(); getForecast()') Get Conditions
+  conditions
+  forecast

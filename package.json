@@ -14,20 +14,25 @@
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.3.2",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "css-loader": "^0.28.0",
     "debug": "^2.6.3",
     "gulp": "^3.9.1",
     "gulp-pug": "^3.3.0",
     "jshint": "^2.9.4",
+    "mocha": "^3.3.0",
     "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3",
+    "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
   },
   "scripts": {
     "clean": "rm -rf bin && rm -rf dist",
     "build": "npm run clean && webpack --config ./webpack.config.js --progress --colors && gulp",
-    "start": "node server"
+    "start": "node ./dist/server",
+    "test": "mocha ./tests/api.js"
   },
   "repository": {
     "type": "git",
