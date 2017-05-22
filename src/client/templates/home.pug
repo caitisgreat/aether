@@ -5,5 +5,6 @@ div(ng-controller='HomeCtrl')
       label(for='zipCode') Zip Code:
     input(id='zipCode' type='text' ng-model='zipCode' value='{{zipCode}}')
     button(type='button' ng-click='getConditions(); getForecast()') Get Conditions
-  conditions
+  div(style="max-width:640px; min-width:240px; margin: 12px 0 12px 0;")
+    conditions
   forecast

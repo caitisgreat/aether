@@ -1,34 +1,39 @@
-div
-  p
-    label(for="CurrentCondition") Currently:&nbsp;
-    span(id="CurrentCondition" ng-bind="conditions.condition")
-  p
-    label(for="Temperature") Temperature:&nbsp;
-    span(id="Temperature" ng-bind="(conditions.degF) + ' °F'")
-  p
-    label(for="WindSpeed") Wind Speed:&nbsp;
-    span(id="WindSpeed" ng-bind="(conditions.windMph) + ' MPH'")
-  p
-    label(for="WindDirection") Wind Direction:&nbsp;
-    span(id="WindDirection" ng-bind="conditions.windDir")
-  p
-    label(for="BarometricPressure") Barometric Pressure:&nbsp;
-    span(id="BarometricPressure" ng-bind="(conditions.pressureInHg) + ' inHg'")
-  p
-    label(for="PressureTrend") Trend:&nbsp;
-    span(id="PressureTrend" ng-bind="conditions.pressureTrend")
-  p
-    label(for="RelativeHumidity") Relative Humidity:&nbsp;
-    span(id="RelativeHumidity" ng-bind="conditions.relativeHumidity")
-  p
-    label(for="DewPoint") Dew Point:&nbsp;
-    span(id="DewPoint" ng-bind="(conditions.dewpointF) + ' °F'")
-  p
-    label(for="HeatIndex") Heat Index:&nbsp;
-    span(id="HeatIndex" ng-bind="(conditions.heatIndexF) + ' °F'")
-  p
-    label(for="Visibility") Visibility:&nbsp;
-    span(id="Visibility" ng-bind="(conditions.visibilityMi) + ' mi.'")
-  p
-    label(for="TotalPrecipitation") Total Precipitation:&nbsp;
-    span(id="TotalPrecipitation" ng-bind="(conditions.precipitationIn) + ' in'")
+div.grid-container.conditions
+  div.row
+    div.col-4.conditions-panel
+      div.row
+        div.col-8
+          label Located:&nbsp;
+          span(ng-bind="(location.city) + ', ' + (location.state) + ' ' + (location.zip)")
+      div.row
+        div.col-8.temperature
+          span(ng-bind="(conditions.degF) + ' °F'")
+      div.row
+        div.col-8
+          label Currently:&nbsp;
+          span(ng-bind="conditions.condition")
+    div.col-4.conditions-panel
+      div.row
+        div.col-8
+          label Pressure:&nbsp;
+          span(ng-bind="(conditions.pressureInHg) + ' inHg ' + (conditions.pressureTrend)")
+      div.row
+        div.col-8
+          label Wind:&nbsp;
+          span(ng-bind="(conditions.windDir) + ' ' + (conditions.windMph) + ' MPH'")
+      div.row
+        div.col-8
+          label Humidity:&nbsp;
+          span(ng-bind="conditions.relativeHumidity")
+      div.row
+        div.col-8
+          label Dew Point:&nbsp;
+          span(ng-bind="(conditions.dewpointF) + ' °F'")
+      div.row
+        div.col-8
+          label Visibility:&nbsp;
+          span(ng-bind="(conditions.visibilityMi) + ' mi.'")
+      div.row
+        div.col-8
+          label Rainfall:&nbsp;
+          span(ng-bind="(conditions.precipitationIn) + ' in'")

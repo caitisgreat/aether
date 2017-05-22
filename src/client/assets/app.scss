@@ -1,3 +1,5 @@
+
+/* Navigation Bar */
 nav {
   ul {
     margin: 0;
@@ -23,4 +25,87 @@ nav {
       color: #222;
     }
   }
+}
+
+/* Grid Container Layout
+   Source: http://j4n.co/blog/Creating-your-own-css-grid-system
+
+  The purpose of the container is to set the width of the entire grid.
+  The width of the container is generally 100%, but you might want to
+  set a max-width for larger displays.
+*/
+
+.grid-container {
+    width:100%;
+    * {
+        box-sizing: border-box;
+    }
+}
+/*
+  The purpose of the row element is to keep the columns inside it from
+  overflowing onto other rows.  To achieve this, we'll use the clearfix
+  hack to make sure everything inside the row stays inside the row.
+*/
+.row:before,
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+[class*='col-'] {
+    float: left;
+    min-height: 1px;
+    width: 12.5%; /* 8 total columns = 100/8 */
+
+    /*-- column  gutter -- */
+    padding: 12px;
+    border: 1px solid black;
+}
+
+.col-1{ width: 12.5%; }
+.col-2{ width: 25.0%; }
+.col-3{ width: 33.33%; }
+.col-4{ width: 50.0%; }
+.col-5{ width: 66.664%; }
+.col-6{ width: 75.0%; }
+.col-7{ width: 87.5%; }
+.col-8{ width: 100%; }
+
+@media all and (max-width: 650px) {
+  .col-1{ width: 25.0%; }
+  .col-2{ width: 50.0%; }
+  .col-3{ width: 75.0%; }
+  .col-4{ width: 100.0%; }
+  .col-5{ width: 100%; }
+  .col-6{ width: 100%; }
+  .col-7{ width: 100%; }
+  .col-8{ width: 100%; }
+
+  .row .col-5 ~ .col-3 {
+      width: 100%;
+  }
+
+  .row .col-6 ~ .col-2 {
+      width: 100%;
+  }
+
+  .row .col-7 ~ .col-1 {
+      width: 100%;
+  }
+}
+
+/* Directive Styles */
+
+.conditions {
+  max-height: 289px;
+
+  .conditions-panel {
+    height: 289px;
+  }
+
+  .temperature {
+    height: 176px;
+  }
+
 }

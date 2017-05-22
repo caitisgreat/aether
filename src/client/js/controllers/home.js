@@ -30,11 +30,11 @@ require('../directives/forecast');
             let location = coords.latitude + "," + coords.longitude;
             return GeoLocationService.doLookup(location);
           })
-          .then((response) => {
-            if ("error" in response.data)
-              throw ErrorFactory.make("ServiceError", response.data.error);
+          .then((lookup) => {
+            if ("error" in lookup.data)
+              throw ErrorFactory.make("ServiceError", lookup.data.error);
 
-            $scope.location = response.data.location;
+            $scope.location = lookup.data.location;
             $scope.zipCode = $scope.location.zip;
           })
           .then(() => {
@@ -56,22 +56,30 @@ require('../directives/forecast');
       }
 
       $scope.getConditions = function() {
-        WeatherFactory.getConditions($scope.zipCode)
-          .then((res) => {
-            if ("error" in res.data)
-              throw ErrorFactory.make("ServiceError", res.data.error);
+        GeoLocationService.doLookup($scope.zipCode)
+          .then((lookup) => {
+            if ("error" in lookup.data)
+              throw ErrorFactory.make("ServiceError", lookup.data.error);
 
-            $scope.conditions = res.data;
+            $scope.location = lookup.data.location;
+            $scope.zipCode = $scope.location.zip;
+            return WeatherFactory.getConditions($scope.location.zip)
+          })
+          .then((conditions) => {
+            if ("error" in conditions.data)
+              throw ErrorFactory.make("ServiceError", conditions.data.error);
+
+            $scope.conditions = conditions.data;
           });
       };
 
       $scope.getForecast = function() {
         WeatherFactory.getForecast($scope.zipCode)
-          .then((res) => {
-            if ("error" in res.data)
-              throw ErrorFactory.make("ServiceError", res.data.error);
+          .then((forecast) => {
+            if ("error" in forecast.data)
+              throw ErrorFactory.make("ServiceError", forecast.data.error);
 
-            $scope.forecast = res.data;
+            $scope.forecast = forecast.data;
           });
       };
     });
